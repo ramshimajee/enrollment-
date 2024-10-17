@@ -1,0 +1,59 @@
+{% include 'guest/header.html' %}
+{% load static %}
+
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('{% static 'images/bg_1.jpg' %}')">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-lg-7">
+                <h2 class="mb-0">Courses</h2>
+                <p>Seamless student course enrollment at your fingertips.</p>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="custom-breadcrumns border-bottom">
+    <div class="container">
+        <a href="{% url 'guestindex' %}">Home</a> <!-- Use the URL tag for better Django practice -->
+        <span class="mx-3 icon-keyboard_arrow_right"></span>
+        <span class="current">Courses</span>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            {% for data in subjectdetails %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="course-1-item">
+                        <figure class="thumnail">
+                            <a href="{% url 'subjectviewmore' data.course_id  %}"> <!-- Use the correct course detail view with dynamic URL -->
+                                {% comment %} <img src="{% static 'images/course_1.jpg' %}" alt="Image" class="img-fluid"> {% endcomment %}
+                            </a>
+                            <div class="price">{{ data.subject_fee }}</div>
+                            <div class="name">
+                                <h3>{{ data.subject_name }}</h3>
+                            </div> 
+                        </figure>
+                        <div class="course-1-content pb-4">
+                            <h2>{{ data.subject_name }}</h2> <!-- Adjust the name to match the actual subject name -->
+                            <div class="rating text-center mb-3">
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
+                                <span class="icon-star2 text-warning"></span>
+                            </div>
+                            <p class="desc mb-4">{{ data.subject_description }}</p>
+                            <p>
+                                <a href="{% url 'subjectviewmore' data.subject_id  %}" class="btn btn-primary rounded-0 px-4">Enroll In This Course</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% include 'guest/footer.html' %}

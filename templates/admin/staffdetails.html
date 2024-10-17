@@ -1,0 +1,61 @@
+{% include 'admin/header.html'%}
+
+<div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">STAFF DETAILS</h5>
+              <div class="card">
+                <div class="card-body">
+                  <form action= "{% url 'staffdetailsaction' %}" method="post" >
+
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Staff Name</label>
+                      <input type="text" name="staffname" class="form-control" id="staffname" aria-describedby="staffname">
+                      
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail" class="form-label">Email</label>
+                      <input type= "text" name= "email" class="form-control" id="email" >
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="exampleInputContact" class="form-label">Contact No</label>
+                        <input type="text" name="contact" class="form-control" id="exampleInputcontact" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputdate" class="form-label">Register date</label>
+                        <input type="date" name="date" class="form-control" id="exampleInputdate" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputQualification" class="form-label">Qualification</label>
+                        <input type="text" name="qualification" class="form-control" id="exampleInputqualification" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="exampleInputUsername" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword" class="form-label">Password</label>
+                        <input type="text" name="password" class="form-control" id="exampleInputPassword" >
+                    </div>
+
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" onclick="myFunction()" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function myFunction() {
+            alert("Registration successfull");
+          }
+          </script>
+        {% include 'admin/footer.html'%}

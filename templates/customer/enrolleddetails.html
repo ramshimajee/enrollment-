@@ -1,0 +1,83 @@
+
+{% include 'guest/header.html'%}
+{% load static %}
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('{% static "images/bg_1.jpg" %}')">
+  <div class="container">
+    <div class="row align-items-end justify-content-center text-center">
+      <div class="col-lg-7">
+        <h2 class="mb-0">Enrolled Details</h2>
+        <p>Seamless student course enrollment at your fingertips.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="custom-breadcrumns border-bottom">
+  <div class="container">
+    <a href="index.html">Home</a>
+    <span class="mx-3 icon-keyboard_arrow_right"></span>
+    <span class="current">Enrolled Register</span>
+  </div>
+</div>
+<div class="site-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <form action="{% url 'enrolleddetailsaction' %}" method="post"> 
+          {% csrf_token %} 
+          <div class="row">
+            <div class="col-md-12 form-group">
+                <label for="registersubjec">Student Name</label>
+                <select name="studentid" class="form-control form-control-lg">
+                  <option value="">--Enter Subject--</option>
+                      {% for item in student_details%}
+                      <option value="{{item.studentid}}">{{item.fullname }}</option>
+                      {%endfor%} 
+                    </select>
+                    <div class="select-dropdown"></div>
+                </div>
+            <div class="col-md-12 form-group">
+              <label for="registercourse">Course Name</label>
+              <select name="courseid" class="form-control form-control-lg">
+                <option value="" >--Enter Course--</option>
+                    {% for item in course_details %}
+                    <option value="{{item.course_id}}">{{item.coursename}}</option>
+                    {%endfor%} 
+                  </select>
+                  <div class="select-dropdown"></div>
+              </div>
+              <div class="col-md-12 form-group">
+                <label for="registersubjec"> Subject Name</label>
+                <select name="subjectid" class="form-control form-control-lg">
+                  <option value="" >--Enter Subject--</option>
+                      {% for item in subject_details %}
+                      <option value="{{item.subject_id}}">{{item.subject_name}}</option>
+                      {%endfor%} 
+                    </select>
+                    <div class="select-dropdown"></div>
+                </div>
+            <div class="col-md-12 form-group">
+              <label for="date">Register date</label>
+              <input type="date" id="date" name="date" class="form-control form-control-lg">
+            </div>
+            <div class="col-md-12 form-group">
+              <label for="status">Status</label>
+              <input type="status" id="status" name="status" class="form-control form-control-lg">
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <input type="submit" value="Register" class="btn btn-primary btn-lg px-5">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'guest/footer.html'%}
+
+                   
+
+
+        

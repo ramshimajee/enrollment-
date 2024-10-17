@@ -1,0 +1,72 @@
+{% include 'admin/header.html'%}
+
+<div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">SUBJECT DETAILS</h5>
+              <div class="card">
+                <div class="card-body">
+
+                  <form action= "{% url 'subjectdetailsaction' %}" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                      <label for="examplecourse" class="form-label">Choose Course</label>
+                        <select name="courseid" class="form-control">
+                            <option value="">-- Select Course --</option>
+                             {% for item in course_details%}
+                            <option value="{{item.course_id}}">{{item.coursename}}</option>
+                            {%endfor%} 
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="examplecourse" class="form-label">Choose Staff</label>
+                        <select name="staffid" class="form-control">
+                            <option value="">-- Select Staff --</option>
+                             {% for item in staff_details%}
+                            <option value="{{item.staffid}}">{{item.staffname}}</option>
+                            {%endfor%} 
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="exampleInputName" class="form-label">Subject Name</label>
+                      <input type="text" name="subjectname" class="form-control" id="exampleInputname">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="exampleInputFee" class="form-label">Subject Fee</label>
+                      <input type="number" name="subjectfee" class="form-control" id="exampleInputfee">
+                    </div>
+                      
+                    
+                 
+                    <div class="mb-3">
+                      <label for="exampleInputDescription" class="form-label">Subject Description</label>
+                      <textarea type= "text" name= "description" class="form-control" id="description" ></textarea>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" onclick="myFunction()" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function myFunction() {
+            alert("Registration successfull");
+          }
+          </script>
+
+        {% include 'admin/footer.html'%}

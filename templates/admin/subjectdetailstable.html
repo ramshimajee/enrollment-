@@ -1,0 +1,104 @@
+{% include 'admin/header.html'%}
+<br><br><br><br>
+<div class="col-lg-8 d-flex align-items-stretch">
+    <div class="card w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">SUBJECT TABLE</h5>
+
+        <a href="{% url 'subjectdetails' %}"><button class="btn btn-primary">Add New  +</button></a><br><br>
+
+
+        
+
+        <div class="table-responsive">
+          <table class="table text-nowrap mb-0 align-middle">
+            <thead class="text-dark fs-4">
+              <tr>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">slno</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Course Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Staff Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Subject Name</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Subject Feee</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">Subject Description</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">  Edit</h6>
+                </th>
+                <th class="border-bottom-0">
+                  <h6 class="fw-semibold mb-0">  Delete</h6>
+                </th>
+                
+                
+              </tr>
+            </thead>
+            {% for data in subjectdetails %}
+            <tbody>
+              <tr>
+                
+                <td class="border-bottom-0">
+                    {{forloop.counter}}
+                    <h6 class="fw-semibold mb-1"></h6>                              
+                </td>
+
+                <td class="border-bottom-0">
+                    {{data.course_id}}
+                  <p class="mb-0 fw-normal"></p>
+                </td>  
+                <td class="border-bottom-0">
+                  {{data.staff_id}}
+                <p class="mb-0 fw-normal"></p>
+              </td> 
+                <td class="border-bottom-0">
+                    {{data.subject_name}}
+                  <p class="mb-0 fw-normal"></p>
+                </td> 
+                <td class="border-bottom-0">
+                  {{data.subject_fee}}
+                <p class="mb-0 fw-normal"></p>
+              </td> 
+                <td class="border-bottom-0">
+                  {{data.subject_description}}
+                <p class="mb-0 fw-normal"></p>
+              </td> 
+                 <td>
+                  <a href="{% url 'subjectdetailsedit' id=data.subject_id %}"><button class="btn btn-primary">Edit</button></a>
+               </td>
+               <td>
+                <a href="{% url 'subjectdetailsdelete' id=data.subject_id %}"><button class="btn btn-danger" onclick="myFunction()">Delete</button></a>
+              </td> 
+               
+
+              
+                
+             
+              </tr> 
+
+              {%endfor%}                      
+            </tbody>
+           
+          </table>
+
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function myFunction() {
+      alert("Deleted successfully");
+    }
+    </script>
+ 
+  {% include 'admin/footer.html'%}

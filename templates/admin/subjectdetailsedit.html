@@ -1,0 +1,67 @@
+{% include 'admin/header.html'%}
+
+<div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">SUBJECT EDIT FORM</h5>
+              <div class="card">
+                <div class="card-body">
+
+                  <form action= "{% url 'subjectdetailsedit' id=edit.subject_id %}" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                      <label for="examplestate" class="form-label">Select Course</label>
+                        <select name="courseid" class="form-control">
+                            <option value="">-- Select Course --</option>
+                            {% for item in course_details %}
+                            <option value="{{item.course_id}}"{% if item.course_id == edit.course_id %} selected {% endif %}>{{item.coursename}}</option>
+                            {%endfor%}
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="examplestaff" class="form-label">Select Staff</label>
+                        <select name="staffid" class="form-control">
+                            <option value="">-- Select Staff --</option>
+                            {% for item in staff_details %}
+                            <option value="{{item.staffid}}"{% if item.staffid == edit.staffid %} selected {% endif %}>{{item.staffname}}</option>
+                            {%endfor%}
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+                      
+                    
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Subject Name</label>
+                      <input type="text" name="subjectname" class="form-control" id="exampleInputname" value="{{edit.subject_name}}">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Subject Fee</label>
+                      <input type="text" name="subjectfee" class="form-control" id="exampleInputfee" value="{{edit.subject_fee}}">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Subject Description</label>
+                      <input type="text" name="description" class="form-control" id="exampleInputfile" value="{{edit.subject_description}}">
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" onclick="myFunction()" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+            function myFunction() {
+              alert("Updated successfully");
+            }
+            </script>
+
+        {% include 'admin/footer.html'%}

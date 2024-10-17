@@ -1,0 +1,77 @@
+{% include 'admin/header.html'%}
+<div class="col-lg-8 d-flex align-items-stretch">
+  <div class="card w-100">
+    <div class="card-body p-4">
+      <h5 class="card-title fw-semibold mb-4">ENROLLED DATAS</h5>
+
+      <div class="table-responsive">
+        <table class="table text-nowrap mb-0 align-middle">
+          <thead class="text-dark fs-4">
+            <tr>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Sl. No.</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Student Name </h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Subject Name</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Register Date</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Status</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Action</h6>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in enrolleddetails %}
+            <tr>
+              <td class="border-bottom-0">
+                {{ forloop.counter }}
+              </td>
+              <td class="border-bottom-0">
+                {{ data.student }}
+              </td>
+              <td class="border-bottom-0">
+                {{ data.subject}}
+              </td>
+              <td class="border-bottom-0">
+                {{ data.register_date }}
+              </td>
+              <td class="border-bottom-0">
+                {{ data.status }}
+              </td>
+              {% if data.status == "Deactivate" %}
+                <td colspan="6" class="text-end">
+                  <a href="{% url "addtoenrolled" id=data.enrollmentid %}">
+                    <button class="btn btn-success">Accept To Enroll</button>
+                  </a>
+                </td>
+              {% elif data.status == "Admitted" %}
+                <td colspan="6" class="text-end">
+                  <a href="{% url "addtoenrollment" id=data.enrollmentid %}">
+                    <button class="btn btn-primary" onclick="addToActivate()">De-activate</button>
+                  </a>
+                </td>
+              {% endif %}
+            </tr>
+            
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function myFunction() {
+    alert("Deleted successfully");
+  }
+</script>
+

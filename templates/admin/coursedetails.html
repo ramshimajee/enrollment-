@@ -1,0 +1,44 @@
+{% include 'admin/header.html'%}
+
+<div class="container-fluid">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold mb-4">COURSE DETAILS</h5>
+              <div class="card">
+                <div class="card-body">
+                  <form action= "{% url 'coursedetailsaction' %}" method="post" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Course Name</label>
+                      <input type="text" name="coursename" class="form-control" id="coursename" aria-describedby="coursename">
+                      
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label">Course Description</label>
+                      <input type= "text" name= "description" class="form-control" id="description" >
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Course Image</label>
+                        <input type="file" name="file" class="form-control" id="exampleInputfile" >
+                      </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" onclick="myFunction()" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function myFunction() {
+            alert("Registration successfull");
+          }
+          </script>
+        {% include 'admin/footer.html'%}
